@@ -4,13 +4,16 @@ lemmatizer = WordNetLemmatizer()
 import pickle
 import numpy as np
 
+from os.path import dirname, abspath
+d = dirname(abspath(__file__))
+
 from keras.models import load_model
-model = load_model('C:/Users/DELL/OneDrive/Máy tính/pythonProjects/django/chatbot/firstChatBot/ab/chatbot_model.h5')
+model = load_model(d + '\\chatbot_model.h5')
 import json
 import random
-intents = json.loads(open('C:/Users/DELL/OneDrive/Máy tính/pythonProjects/django/chatbot/firstChatBot/ab/intents.json').read())
-words = pickle.load(open('C:/Users/DELL/OneDrive/Máy tính/pythonProjects/django/chatbot/firstChatBot/ab/words.pkl','rb'))
-classes = pickle.load(open('C:/Users/DELL/OneDrive/Máy tính/pythonProjects/django/chatbot/firstChatBot/ab/classes.pkl','rb'))
+intents = json.loads(open(d + '\\intents.json').read())
+words = pickle.load(open(d + '\\words.pkl','rb'))
+classes = pickle.load(open(d + '\\classes.pkl','rb'))
 
 
 def clean_up_sentence(sentence):
