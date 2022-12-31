@@ -11,7 +11,12 @@
         },
         {"tag": "thanks",
          "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
-         "responses": ["Happy to help!", "Any time!", "My pleasure"],
+         "responses": ["Happy to help!", "Any time!", "My pleasure", "your welcome"],
+         "context": [""]
+        },
+        {"tag": "tasks",
+         "patterns": ["What can you do?", "What are your features?", "What are you abilities"],
+         "responses": ["I know quite a lot of information, weather update, I can help you look up information, I can sing"],
          "context": [""]
         },
         {"tag": "noanswer",
@@ -19,10 +24,58 @@
          "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand"],
          "context": [""]
         },
+        {"tag": "weather",
+         "patterns": ["What's the weather today", "how's the weather", "weather today"],
+         "responses": ["Fetching weather ..."],
+         "context": [""]
+        },
+        {"tag": "search",
+         "patterns": ["I want to search", "search", "can you search"],
+         "responses": ["Looking ..."],
+         "context": [""]
+        },
         {"tag": "meme",
          "patterns": ["Do you know some meme"],
-         "responses": ["Hong biet, hong biet gi het", "Hai, quay xe", "Not sure I understand"],
+         "responses": ["Hong biet, hong biet gi het", "Hai, quay xe"],
+         "context": [""]
+        },
+        {"tag": "God",
+         "patterns": ["Do you know god?", "Who is god", "Can you tell me anything about god","does god exists?","is there a god?"],
+         "responses": ["god hunnnnn, let me think may be next time i can answer that ","I don't, as i was not created by a human", "Wait i need to ask that to my creator","i'm not sure right now"],
+	 "context": [""]
+	},
+        {"tag": "about me",
+         "patterns": ["Do you know me?", "who am I", "tell me about myself","identify me" ],
+         "responses": ["Yes, you are a human","You are a dumb person asking a machine about yourself", "Sorry i can't tell that in public, maybe you are batman"],
+	 "context": [""]
+	},
+        {"tag": "nhuqy",
+         "patterns": ["Who are you?", "tell me about yourself", "tell me about you", "what is your name"],
+         "responses": ["Hi I'm Nhuqy and i'm an AI created for chatting with humans","Nhuqy here, a very advance chatbot", "Yes, I'm Nhuqy", "You can call me Nhuqy"],
+	 "context": [""]
+	},
+	{"tag": "creator",
+         "patterns": ["Who is your creator?", "who created you", "who is your father","who is your daddy" ],
+         "responses": ["That would be you Team 6","I was created by Team 6", "Team 6 is my creator"],
+	 "context": [""]
+	},
+        {"tag": "myself",
+         "patterns": ["Tell me about Team 6?", "Who is Team 6", "Team 6 profile", "Team 6 details" ],
+         "responses": ["A very intelligent being who created me","Team 6 is a group with many talented people", "They are smart and beautiful"],
+	 "context": [""]
+	},
+        {"tag": "joke",
+         "patterns": ["tell me a joke?", "make me laugh", "tell me a science joke","tell me something funny" ],
+         "responses": ["How do you make holy water? you boil the hell out of it","what kind of bees make milk instead of honey?Boobies", "Did you hear oxygen went on a date with potassium? A: It went OK."],
+	 "context": [""]
+	},
+        {"tag": "sing",
+         "patterns": [ "can you sing", "sing for me", "I want to hear you sing"],
+         "responses": ["audio1.mp3", "audio2.mp3", "audio3.mp3", "audio4.mp3"],
          "context": [""]
         }
+
+
+
    ]
 }

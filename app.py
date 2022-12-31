@@ -6,7 +6,10 @@ from os.path import dirname, abspath
 d = dirname(abspath(__file__)) + "\\chatBotModel"
 sys.path.append(d)
 
-from chatgui import chatbot_response
+from chatBot import chatbot_response
+import requests, json
+
+
 
 
 
@@ -18,9 +21,9 @@ def index():
 
 @app.route('/alo/<string:mess>', methods=['POST'])
 def alo(mess):
-    print("concac" + mess)
-    
+
     return chatbot_response(mess)
+    #return chatbot_response(mess)
 
 if __name__ == "__main__":
     app.run(debug=True)

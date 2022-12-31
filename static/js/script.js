@@ -51,9 +51,10 @@ function pushUserMess(mess){
     //append userMessage_child
     userMessage.appendChild(userMessage_child);
     document.getElementById("cbMain").appendChild(userMessage);
+    document.getElementById("cbMain").scrollTop = 10000;
 }
 
-function pushBotMess(mess){
+function pushBotMess(mess, task){
     //create div new botMessage
     var botMessage = document.createElement("div");
     var botMessage_child = document.createElement("div");
@@ -64,9 +65,17 @@ function pushBotMess(mess){
     botMessage_text.className = "botMessage_child--text";
 
     //create and append p (message bot)
-    var para = document.createElement("p");
-    para.innerHTML = mess;
-    botMessage_text.appendChild(para);
+    if(task === "sing"){
+        var audio = document.createElement("AUDIO");
+        audio.setAttribute("src","../static/image/"+ mess);
+        audio.setAttribute("controls", "controls");
+        botMessage_text.appendChild(audio);
+    }
+    else{
+        var para = document.createElement("p")
+        para.innerHTML = mess;
+        botMessage_text.appendChild(para);
+    }
 
     //create small and append small, botMessage_text
     var small = document.createElement("small");
@@ -80,6 +89,13 @@ function pushBotMess(mess){
     botMessage.appendChild(ava);
     botMessage.appendChild(botMessage_child);
     document.getElementById("cbMain").appendChild(botMessage);
+    document.getElementById("cbMain").scrollTop = 10000;
+}
+
+function handleData(data){
+    let city = data['name'];
+    let temp = Math.round(data['main'].temp - 273.15);
+    return `Weather in ${city}<br>Temparature: ${temp}oC`;
 }
 
 function myFunction(){
@@ -91,8 +107,26 @@ function myFunction(){
     request.open('POST', `/alo/${mess}`)
     request.onload = () =>{
         const flaskMessage = request.responseText;
-        setTimeout(pushBotMess(flaskMessage), 5000);
-        document.getElementById("cbMain").scrollTop = 10000;
+        console.log(flaskMessage);
+        if(mess.includes("weather")){
+            setTimeout(pushBotMess, 1000, flaskMessage, "text");
+            const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=Ho Chi Minh&appid=4fc232c1cf9c734431b578af2dce0126`;
+            fetch(endpoint)
+            .then((response)=> response.json())
+            .then((data) => setTimeout(pushBotMess, 2000, handleData(data), "text"));
+        }
+        else if(mess.includes("search")){
+            var query = mess.split('search')
+            setTimeout(pushBotMess, 500, flaskMessage, "text");
+            setTimeout(pushBotMess, 1500, "Done", "text");
+            setTimeout(()=>{window.open(`https://www.google.com/search?q=${query[query.length - 1]}`);}, 2500);
+        }
+        else if(mess.includes("sing")){
+            setTimeout(pushBotMess, 1500, flaskMessage, "sing");
+        }
+        else{
+            setTimeout(pushBotMess, 1500, flaskMessage, "text");
+        }
     }
     request.send()
 }
